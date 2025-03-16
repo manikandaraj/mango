@@ -4,7 +4,7 @@
   <h2>{{ .LinkTitle }}</h2>
   <div>
     {{ range .Pages }}
-    <a href="{{ .Permalink }}" class="post-card">
+    <a href="{{ .Permalink }}index.html" class="post-card">
       <article>
         <time>{{ .Params.lastmod.Format (.Site.Params.dateFormatToUse) }}</time>
         <h3>{{ .LinkTitle }}</h3>
