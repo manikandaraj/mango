@@ -1,10 +1,25 @@
-{{ define "main" }}
-  <h1>{{ .Title }}</h1>
-
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
-{{ end }}
+{{ define "main" -}}
+  <div class="content-wrapper">
+    <aside class="left-sidebar">
+      {{- $hasTOC := gt (len .TableOfContents) 32 -}}
+      {{ if $hasTOC -}}
+        <nav class="toc" id="toc">
+          <div class="toc-title">Table of Contents</div>
+          <div class="toc-content custom-scrollbar">
+            {{ .TableOfContents }}
+          </div>
+        </nav>
+      {{- end }}
+    </aside>
+    <div id="content" class="content">
+      <article class="post">
+        <!-- Content -->
+        <div class="post-content">
+          {{ .Content }}
+        </div>
+      </article>
+    </div>
+    <aside class="right-sidebar">
+    </aside>
+  </div>
+{{- end }}

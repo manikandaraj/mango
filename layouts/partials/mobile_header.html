@@ -1,0 +1,25 @@
+<div class="mobile-header">
+  <div id="mobile-navbar" class="mobile-navbar">
+    <div id="mobile-navbar-icon" class="mobile-navbar-icon">
+      {{ $menuIcon := resources.Get "icons/menu.svg" }}
+      <img src="{{ $menuIcon.RelPermalink }}" alt="Menu Icon" class="icon--menu">
+    </div>
+    <div class="mobile-navbar-logo">
+        <a href="{{ `/`}}" class="logo">
+        {{ .Site.Title }}
+        </a>
+    </div>
+  </div>
+
+  <div id="mobile-menu-close-modal" class="mobile-menu-close-modal"></div>
+  <nav id="mobile-menu" class="mobile-menu">
+    <ul class="mobile-menu-list">
+      {{ range .Site.Menus.main -}}
+      <li class="mobile-menu-item">
+        <a class="menu-item-link" href="{{ .URL | absLangURL | safeURL }}">{{ .Name }}</a>
+      </li>
+      {{- end }}
+      </li>
+    </ul>
+  </nav>
+</div>
