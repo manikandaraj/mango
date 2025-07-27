@@ -1,36 +1,204 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default `en` }}" itemscope itemtype="http://schema.org/WebPage" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>
-    {{- block "title" . -}}
-    {{ if .IsPage }}
-    {{ .Title }} - {{ .Site.Title }}
-    {{ else }}
-    {{ .Site.Title }}
-    {{ end }}
-    {{- end -}}
-  </title>
-  {{ partial "head.html" . }}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    {{ $css := resources.Get "css/wireframe.css" }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    <style>
+        :root {
+            /* Dark Theme Variables from config */
+            --bg-primary: {{ .Site.Params.colors.bg_primary }};
+            --bg-secondary: {{ .Site.Params.colors.bg_secondary }};
+            --bg-tertiary: {{ .Site.Params.colors.bg_tertiary }};
+            --text-primary: {{ .Site.Params.colors.text_primary }};
+            --text-secondary: {{ .Site.Params.colors.text_secondary }};
+            --accent-color: {{ .Site.Params.colors.accent_color }};
+            --border-color: {{ .Site.Params.colors.border_color }};
+            --hover-color: {{ .Site.Params.colors.hover_color }};
+
+            /* Ad banner settings */
+            --ad-width: {{ .Site.Params.ads.banner_width }};
+            --ad-height: {{ .Site.Params.ads.banner_height }};
+        }
+
+        /* Light Theme Variables from config */
+        .light-theme {
+            --bg-primary: {{ .Site.Params.colors.light.bg_primary }};
+            --bg-secondary: {{ .Site.Params.colors.light.bg_secondary }};
+            --bg-tertiary: {{ .Site.Params.colors.light.bg_tertiary }};
+            --text-primary: {{ .Site.Params.colors.light.text_primary }};
+            --text-secondary: {{ .Site.Params.colors.light.text_secondary }};
+            --accent-color: {{ .Site.Params.colors.light.accent_color }};
+            --border-color: {{ .Site.Params.colors.light.border_color }};
+            --hover-color: {{ .Site.Params.colors.light.hover_color }};
+        }
+
+        .ad-container {
+            width: var(--ad-width);
+            height: var(--ad-height);
+        }
+    </style>
 </head>
-
 <body>
-  <div id="back-to-top"></div>
+    <div class="page-wrapper">
+    <!-- Header Section -->
+    <header class="header">
+        <div class="blogger-name">{{ .Site.Title }}</div>
+        <nav class="header-nav">
+            {{ range .Site.Menus.main.ByWeight }}
+            <a href="{{ .URL }}" 
+               {{ if .Title }}title="{{ .Title }}"{{ end }}
+               {{ if .Pre }}data-icon="{{ .Pre }}"{{ end }}
+               {{ if eq .URL $.RelPermalink }}class="active"{{ end }}>
+                {{ .Pre }}{{ .Name }}{{ .Post }}
+            </a>
+            {{ end }}
+            <button class="theme-toggle" onclick="toggleTheme()">{{ .Site.Params.theme_toggle.text | default "🌓 Theme" }}</button>
+        </nav>
 
-  <header class="site-header">
-    {{ partial "desktop_header.html" . }}
-    {{ partial "mobile_header.html" . }}
-  </header>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">{{ .Site.Params.mobile_menu.toggle_text | default "☰ Menu" }}</button>
+    </header>
 
-  <main id="main" class="main pico container">
-    {{ block "main" . }}{{ end }}
-  </main>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-section">
+            <h3>{{ .Site.Params.navigation.title | default "Navigation" }}</h3>
+            <nav class="mobile-menu-nav">
+                {{ range .Site.Menus.main.ByWeight }}
+                <a href="{{ .URL }}" 
+                   {{ if .Title }}title="{{ .Title }}"{{ end }}
+                   {{ if eq .URL $.RelPermalink }}class="active"{{ end }}>
+                    {{ .Pre }}{{ .Name }}{{ .Post }}
+                </a>
+                {{ end }}
+            </nav>
+        </div>
 
-  <footer id="footer" class="site-footer">
-    {{ partial "footer.html" . }}
-  </footer>
+        {{ if .Site.Params.social.links }}
+        <div class="mobile-menu-section">
+            <h3>{{ .Site.Params.social.title | default "Social Links" }}</h3>
+            <div class="mobile-social-links">
+                {{ range .Site.Params.social.links }}
+                {{ if and .name .url }}
+                <a href="{{ .url }}" class="mobile-social-link" target="_blank">
+                    <span class="social-icon"></span>
+                    {{ .name }}
+                </a>
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
 
+        <div class="mobile-menu-section">
+            <button class="theme-toggle" onclick="toggleTheme()">{{ .Site.Params.theme_toggle.mobile_text | default "🌓 Toggle Theme" }}</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            {{ if .Site.Params.social.links }}
+            <div class="sidebar-section">
+                <h3>{{ .Site.Params.social.title | default "Connect With Me" }}</h3>
+                <div class="social-links">
+                    {{ range .Site.Params.social.links }}
+                    {{ if and .name .url }}
+                    <a href="{{ .url }}" class="social-link" target="_blank">
+                        <span class="social-icon"></span>
+                        {{ .name }}
+                    </a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+
+            {{ if .Site.Params.quicklinks.links }}
+            <div class="sidebar-section">
+                <h3>{{ .Site.Params.quicklinks.title | default "Quick Links" }}</h3>
+                <div class="nav-links">
+                    {{ range .Site.Params.quicklinks.links }}
+                    {{ if and .name .url }}
+                    <a href="{{ .url }}" class="nav-link">{{ .name }}</a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            {{ block "main" . }}{{ end }}
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="ad-container">
+                {{ if .Site.Params.ads.iframe_url }}
+                    <iframe src="{{ .Site.Params.ads.iframe_url }}" 
+                            title="{{ .Site.Params.ads.iframe_title | default "Advertisement" }}"
+                            loading="lazy">
+                    </iframe>
+                {{ else }}
+                    <div>
+                        <strong>{{ .Site.Params.ads.fallback_title | default "Advertisement Space" }}</strong><br>
+                        {{ .Site.Params.ads.banner_width }} x {{ .Site.Params.ads.banner_height }} {{ .Site.Params.ads.fallback_type | default "Banner" }}<br>
+                        <small>{{ .Site.Params.ads.fallback_subtitle | default "(iframe integration)" }}</small>
+                    </div>
+                {{ end }}
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="copyright">
+            {{ .Site.Params.copyright }}
+        </div>
+        <div class="footer-links">
+            {{ range .Site.Params.footer.links }}
+            <a href="{{ .url }}">{{ .name }}</a>
+            {{ end }}
+        </div>
+    </footer>
+    </div>
+
+    <script>
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+
+            if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+
+        // Dynamic year update
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            document.querySelector('.copyright').innerHTML = document.querySelector('.copyright').innerHTML.replace('{CURRENT_YEAR}', currentYear);
+        });
+    </script>
 </body>
-
 </html>

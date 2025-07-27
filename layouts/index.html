@@ -1,0 +1,11 @@
+
+{{ define "main" }}
+<div class="intro-section">
+    <div class="profile-container">
+        <img src="{{ .Site.Params.profile_image | default "/images/profile.jpg" }}" alt="{{ .Site.Params.profile_alt_text | default (printf "%s's Profile Picture" .Site.Title) }}" class="profile-image">
+        <div class="intro-text">
+            {{ .Content }}
+        </div>
+    </div>
+</div>
+{{ end }}

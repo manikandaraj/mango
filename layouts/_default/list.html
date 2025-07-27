@@ -1,19 +1,16 @@
+
 {{ define "main" }}
-  {{ .Content }}
-  <section class="post-card-container">
-  <h2>{{ .LinkTitle }}</h2>
-  <div>
+<div class="content-header">
+    <h1>{{ .Site.Params.blog.list_title | default "Latest Blog Posts" }}</h1>
+</div>
+
+<div class="blog-list-view">
     {{ range .Pages }}
-    <a href="{{ .Permalink }}index.html" class="post-card">
-      <article>
-        <time>{{ .Params.lastmod.Format (.Site.Params.dateFormatToUse) }}</time>
-        <h3>{{ .LinkTitle }}</h3>
-        <div>{{ .Params.summary }}</div>
-        <span class="read-more">{{ i18n "readmore" }}</span>
-      </article>
-    </a>
-    <hr>
+    <article class="blog-post-item">
+        <h2 class="blog-post-title"><a href="{{ .Permalink }}" style="color: var(--accent-color); text-decoration: none;">{{ .Title }}</a></h2>
+        <div class="blog-post-meta">{{ .Site.Params.blog.published_text | default "Published on" }} {{ .Date.Format (.Site.Params.dateFormatToUse | default "January 2, 2006") }} | {{ .ReadingTime }} {{ .Site.Params.blog.reading_time_text | default "min read" }}{{ if .Params.tags }} | {{ .Site.Params.blog.tags_text | default "Tags" }}: {{ delimit .Params.tags ", " }}{{ end }}</div>
+        <p class="blog-post-summary">{{ .Summary }}</p>
+    </article>
     {{ end }}
-  </div>
-</section>
+</div>
 {{ end }}

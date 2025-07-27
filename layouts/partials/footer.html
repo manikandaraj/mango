@@ -1,25 +1,3 @@
-<div class="copyright">
-  <span class="copyright-year">
-    {{- $current := now.Format "2006" }}
-    &copy;
-    {{ if ne .Site.Params.since $current }}
-    {{ .Site.Params.since }} -
-    {{ end }}
-    {{- $current }}
-    <span class="heart">
-      {{/* icon heart */}}
-      <i class="iconfont">
-        {{/* partial "icons/icon" (dict
-        "path" "icons/post/heart.svg"
-        ) */}}
-      </i>
-    </span>
-    {{- if or .Site.Copyright (or .Site.Params.author.name .Site.Author.name) -}} 
-    <span class="author">
-      {{if .Site.Copyright }}{{ .Site.Copyright | safeHTML }}
-      {{ else }}{{ or .Site.Params.author.name .Site.Author.name | safeHTML }}
-      {{ end }}
-    </span>
-    {{- end -}} 
-  </span>
-</div>
+<footer id="footer">
+    {{ .Site.Params.copyright }}
+</footer>

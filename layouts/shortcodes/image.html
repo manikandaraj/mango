@@ -1,7 +1,12 @@
-<figure>
-  <img src="{{ .Get "src" }}" alt="{{ .Get "caption" }}">
-  {{ with .Get "caption" }}
-    <figcaption>{{ . }}</figcaption>
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $caption := .Get "caption" | default "" }}
+{{ $width := .Get "width" | default "" }}
+{{ $height := .Get "height" | default "" }}
+
+<figure{{ if $width }} style="max-width: {{ $width }};"{{ end }}>
+  <img src="{{ $src }}" alt="{{ $alt }}"{{ if $width }} width="{{ $width }}"{{ end }}{{ if $height }} height="{{ $height }}"{{ end }}>
+  {{ if $caption }}
+  <figcaption>{{ $caption }}</figcaption>
   {{ end }}
 </figure>
-

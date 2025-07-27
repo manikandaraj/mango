@@ -1,25 +1,24 @@
-{{ define "main" -}}
-  <div class="content-wrapper">
-    <aside class="left-sidebar">
-      {{- $hasTOC := gt (len .TableOfContents) 32 -}}
-      {{ if $hasTOC -}}
-        <nav class="toc" id="toc">
-          <div class="toc-title">Table of Contents</div>
-          <div class="toc-content custom-scrollbar">
-            {{ .TableOfContents }}
-          </div>
-        </nav>
-      {{- end }}
+
+{{ define "main" }}
+<div class="content-header">
+    <h1 style="color: var(--accent-color);">{{ .Title }}</h1>
+</div>
+
+<article class="blog-post-content">
+    <div class="blog-post-meta">{{ .Site.Params.blog.published_text | default "Published on" }} {{ .Date.Format (.Site.Params.dateFormatToUse | default "January 2, 2006") }} | {{ .ReadingTime }} {{ .Site.Params.blog.reading_time_text | default "min read" }}{{ if .Params.tags }} | {{ .Site.Params.blog.tags_text | default "Tags" }}: {{ delimit .Params.tags ", " }}{{ end }}</div>
+    
+    <!-- Auto-generated Table of Contents -->
+    {{ $showTOC := .Site.Params.blog.auto_toc | default true }}
+    {{ if .Params.toc }}{{ $showTOC = .Params.toc }}{{ end }}
+    {{ if and $showTOC .TableOfContents }}
+    <aside class="auto-toc">
+        <h4>{{ .Site.Params.blog.toc_title | default "Table of Contents" }}</h4>
+        {{ .TableOfContents }}
     </aside>
-    <div id="content" class="content">
-      <article class="post">
-        <!-- Content -->
-        <div class="post-content">
-          {{ .Content }}
-        </div>
-      </article>
+    {{ end }}
+    
+    <div class="post-content{{ if .Site.Params.blog.hide_duplicate_title | default true }} hide-first-h1{{ end }}">
+        {{ .Content }}
     </div>
-    <aside class="right-sidebar">
-    </aside>
-  </div>
-{{- end }}
+</article>
+{{ end }}

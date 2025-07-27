@@ -1,0 +1,6 @@
+<h3>{{ .Site.Params.blog.posts_title | default "Blog Posts" }}</h3>
+<ul id="posts">
+{{- range where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ .Render "li" }}
+{{- end }}
+</ul>

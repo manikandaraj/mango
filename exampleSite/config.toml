@@ -1,0 +1,322 @@
+# =============================================================================
+# Hugo Configuration File for Mango Theme
+# =============================================================================
+# This is an example configuration file for the Mango Hugo theme.
+# Copy this file to your site's root directory and customize as needed.
+# 
+# For more information about Hugo configuration:
+# https://gohugo.io/getting-started/configuration/
+# =============================================================================
+
+# Basic Site Configuration
+# -----------------------------------------------------------------------------
+baseURL = 'https://manikandaraj.com'            # Base URL for the site (change this!)
+languageCode = 'en-us'                          # Primary language
+title = 'Manikandaraj Srinivasan'               # Site title displayed in browser
+theme = "mango"                                 # Theme name (located in themes/ directory)
+
+# Hugo Behavior Settings
+# -----------------------------------------------------------------------------
+titleCaseStyle = 'ap'                           # Use AP (Associated Press) style for title case
+disableHugoGeneratorInject = true              # Remove Hugo generator meta tag from HTML
+enableEmoji = true                             # Enable emoji support in Markdown content
+enableRobotsTXT = true                         # Generate robots.txt for search engines
+templateMetrics = true                         # Show template performance metrics during build
+
+# Site Parameters
+# =============================================================================
+[params]
+    # Content Configuration
+    # -------------------------------------------------------------------------
+    mainSections = ["blog"]                     # Primary content sections for homepage
+    copyright = "© 2024-{CURRENT_YEAR} Your Name. All rights reserved."
+
+    # Author Information
+    # -------------------------------------------------------------------------
+    # Used in blog posts metadata and RSS feeds
+    [params.author]
+        name = "Your Name"                      # Full name for attribution
+        email = "your.email@example.com"       # Contact email
+
+    # SEO (Search Engine Optimization) Settings
+    # -------------------------------------------------------------------------
+    # Keywords for meta tags and search engine indexing
+    keywords = [
+        "blog", "technology", "web development", # Content type and topics
+        "programming", "coding", "tutorial",     # Technical content
+        "Hugo", "static site", "responsive"      # Technical specifics
+    ]
+    description = "My Tech Blog - Sharing knowledge and insights!"  # Site description for meta tags
+
+    # Date Formatting
+    # -------------------------------------------------------------------------
+    dateFormatToUse = "Jan 02, 2006"           # Custom date format for blog posts
+
+    # Profile Image Configuration
+    # -------------------------------------------------------------------------
+    # Profile image displayed on homepage intro section
+    # Recommended: 400x400px square format for best quality
+    # Displays as: 200x200px on desktop, 150x150px on mobile
+    profile_image = "/images/profile.jpg"
+    profile_alt_text = "Your Name's Profile Picture"  # Alt text for profile image
+
+    # Social Media Links
+    # -------------------------------------------------------------------------
+    # Social networking profiles - displayed in sidebar and mobile menu
+    # FULLY DYNAMIC: Add/remove links as needed. Only configured links will appear.
+    # If no links are configured, the entire section will be hidden.
+    [params.social]
+        title = "Connect With Me"                # Section title for social links
+        
+        # Individual social media links with display names and URLs
+        # Simply add more [[params.social.links]] blocks to add new links
+        # Comment out or delete blocks to remove links
+        [[params.social.links]]
+            name = "GitHub"                      # Display name for the link
+            url = "https://github.com/manikandaraj/"  # Target URL
+            
+        [[params.social.links]]
+            name = "LinkedIn"                    # Display name for the link
+            url = "https://www.linkedin.com/in/manikandaraj/"  # Target URL
+            
+        [[params.social.links]]
+            name = "X (Twitter)"                 # Display name for the link
+            url = "https://x.com/manikandaraj"   # Target URL
+            
+        [[params.social.links]]
+            name = "StackOverflow"               # Display name for the link
+            url = "https://stackoverflow.com/users/1430572/manikandaraj-srinivasan"  # Target URL
+            
+        [[params.social.links]]
+            name = "GitLab"                      # Display name for the link
+            url = "https://gitlab.com/Manikandaraj"  # Target URL
+            
+        [[params.social.links]]
+            name = "Email"                       # Display name for the link
+            url = "mailto:matrix@manikandaraj.com"  # Target URL
+            
+        # Example: Add more social links as needed
+        # [[params.social.links]]
+        #     name = "YouTube"                     # Display name for the link
+        #     url = "https://youtube.com/@yourhandle"  # Target URL
+        #     
+        # [[params.social.links]]
+        #     name = "Instagram"                   # Display name for the link
+        #     url = "https://instagram.com/yourhandle"  # Target URL
+        #     
+        # [[params.social.links]]
+        #     name = "Discord"                     # Display name for the link
+        #     url = "https://discord.gg/yourinvite"    # Target URL
+
+    # Theme Color Scheme
+    # -------------------------------------------------------------------------
+    # Dark theme colors (default)
+    [params.colors]
+        bg_primary = "#1a1a1a"                  # Main background color
+        bg_secondary = "#2d2d2d"                # Secondary background (cards, sidebars)
+        bg_tertiary = "#3a3a3a"                 # Tertiary background (ads, highlights)
+        text_primary = "#ffffff"                # Primary text color
+        text_secondary = "#b0b0b0"              # Secondary text color (meta, descriptions)
+        accent_color = "#4285f4"                # Accent color (links, highlights) - Google Blue
+        border_color = "#404040"                # Border color for elements
+        hover_color = "#4a4a4a"                 # Hover state background color
+
+    # Light theme colors (when theme toggle is activated)
+    [params.colors.light]
+        bg_primary = "#ffffff"                  # Light theme main background
+        bg_secondary = "#f5f5f5"                # Light theme secondary background
+        bg_tertiary = "#e0e0e0"                 # Light theme tertiary background
+        text_primary = "#333333"                # Light theme primary text
+        text_secondary = "#666666"              # Light theme secondary text
+        accent_color = "#1a73e8"                # Light theme accent color - Darker Google Blue
+        border_color = "#ddd"                   # Light theme border color
+        hover_color = "#f0f0f0"                 # Light theme hover state
+
+    # Quick Links Configuration
+    # -------------------------------------------------------------------------
+    # Useful quick navigation links displayed in the left sidebar
+    # FULLY DYNAMIC: Add/remove links as needed. Only configured links will appear.
+    # If no links are configured, the entire section will be hidden.
+    [params.quicklinks]
+        title = "Quick Links"                  # Section title (configurable)
+        
+        # Individual quick links with display names and URLs
+        # Simply add more [[params.quicklinks.links]] blocks to add new links
+        # Comment out or delete blocks to remove links
+        [[params.quicklinks.links]]
+            name = "Useful Resources"          # Display name for the link
+            url = "/resources"                 # Target URL
+            
+        [[params.quicklinks.links]]
+            name = "Certification Study Guide" # Display name for the link
+            url = "/certifications"           # Target URL
+            
+        [[params.quicklinks.links]]
+            name = "Cheat Sheets"              # Display name for the link
+            url = "/cheatsheets"               # Target URL
+            
+        [[params.quicklinks.links]]
+            name = "My Favorite Movies"        # Display name for the link
+            url = "/movies"                    # Target URL
+            
+        # Example: Add more quick links as needed
+        # [[params.quicklinks.links]]
+        #     name = "Tools & Software"          # Display name for the link
+        #     url = "/tools"                     # Target URL
+        #     
+        # [[params.quicklinks.links]]
+        #     name = "Reading List"              # Display name for the link
+        #     url = "/reading"                   # Target URL
+        #     
+        # [[params.quicklinks.links]]
+        #     name = "Portfolio"                 # Display name for the link
+        #     url = "/portfolio"                 # Target URL
+
+    # Blog Configuration
+    # -------------------------------------------------------------------------
+    # Text strings and formatting for blog-related content
+    [params.blog]
+        list_title = "Latest Blog Posts"      # Title for blog list pages
+        posts_title = "Blog Posts"            # Title for posts section
+        published_text = "Published on"       # Text before publication date
+        reading_time_text = "min read"        # Text after reading time
+        tags_text = "Tags"                    # Text before tags list
+        toc_title = "Table of Contents"       # Title for table of contents
+        auto_toc = true                       # Enable automatic TOC generation for all posts (can be overridden per post)
+        hide_duplicate_title = true           # Hide first H1 in content to avoid duplication with page title header
+
+    # Footer Configuration
+    # -------------------------------------------------------------------------
+    # Footer links configuration
+    [params.footer]
+        # Footer navigation links
+        [[params.footer.links]]
+            name = "Privacy Policy"            # Display name for the link
+            url = "/privacy"                   # Target URL
+            
+        [[params.footer.links]]
+            name = "Terms of Service"          # Display name for the link
+            url = "/terms"                     # Target URL
+            
+        [[params.footer.links]]
+            name = "Content License"           # Display name for the link
+            url = "/license"                   # Target URL
+
+    # Navigation Configuration
+    # -------------------------------------------------------------------------
+    # Navigation section configuration
+    [params.navigation]
+        title = "Navigation"                   # Title for navigation section in mobile menu
+
+    # Theme Toggle Configuration
+    # -------------------------------------------------------------------------
+    # Theme toggle button text configuration
+    [params.theme_toggle]
+        text = "🌓 Theme"                      # Text for theme toggle button in header
+        mobile_text = "🌓 Toggle Theme"       # Text for theme toggle button in mobile menu
+
+    # Mobile Menu Configuration
+    # -------------------------------------------------------------------------
+    # Mobile menu configuration
+    [params.mobile_menu]
+        toggle_text = "☰ Menu"                # Text for mobile menu toggle button
+
+    # Advertisement Configuration
+    # -------------------------------------------------------------------------
+    # Settings for the ad banner displayed in the right sidebar
+    [params.ads]
+        banner_width = "300px"                  # Advertisement banner width
+        banner_height = "900px"                 # Advertisement banner height
+        iframe_url = "https://ads.manikandaraj.com"  # URL for advertisement content
+        iframe_title = "Advertisement"          # Title attribute for iframe (for accessibility)
+        
+        # Fallback text when no iframe_url is provided
+        fallback_title = "Advertisement Space" # Main title for fallback display
+        fallback_type = "Banner"               # Type of ad space (e.g. "Banner", "Advertisement")
+        fallback_subtitle = "(iframe integration)" # Subtitle for fallback display
+
+# Site Navigation Menu
+# =============================================================================
+# Main navigation menu items displayed in header and mobile menu using Hugo's built-in menu system
+# FULLY CONFIGURABLE: Add/remove menu items as needed. Only configured items will appear.
+# Features: Active page highlighting, tooltips, icons, custom ordering
+# Items are ordered by weight (lower numbers appear first)
+
+[[menu.main]]
+    name = "Home"                               # Display name
+    url = "/"                                   # Target URL
+    weight = 1                                  # Sort order (lower = first)
+    title = "Go to homepage"                    # Optional: Tooltip text on hover
+    # pre = "🏠 "                               # Optional: Icon/text before name
+    # post = ""                                 # Optional: Text after name
+
+[[menu.main]]
+    name = "About Me"
+    url = "/about"
+    weight = 2
+    title = "Learn more about me"               # Optional: Tooltip text
+
+[[menu.main]]
+    name = "Contact Me"
+    url = "/contact"
+    weight = 3
+    title = "Get in touch"                      # Optional: Tooltip text
+
+[[menu.main]]
+    name = "Blog"
+    url = "/blog"
+    weight = 4
+    title = "Read my blog posts"                # Optional: Tooltip text
+
+[[menu.main]]
+    name = "My Resume"
+    url = "/resume"
+    weight = 5
+    title = "View my professional experience"   # Optional: Tooltip text
+
+[[menu.main]]
+    name = "My Projects"
+    url = "/projects"
+    weight = 6
+    title = "Explore my projects"               # Optional: Tooltip text
+
+# Example: Add more menu items as needed
+# [[menu.main]]
+#     name = "Services"                         # Display name
+#     url = "/services"                         # Target URL
+#     weight = 7                                # Sort order
+#     title = "Professional services I offer"  # Optional: Tooltip text
+#     pre = "⚙️ "                              # Optional: Icon before name
+#     
+# [[menu.main]]
+#     name = "Portfolio"
+#     url = "/portfolio"
+#     weight = 8
+#     title = "View my work portfolio"
+#     
+# [[menu.main]]
+#     name = "External Link"
+#     url = "https://external-site.com"
+#     weight = 9
+#     title = "Visit external site"
+#     post = " ↗"                              # Optional: External link indicator
+
+# Content Rendering Configuration
+# =============================================================================
+# Controls how Hugo processes and renders Markdown content
+
+[markup]
+    # Goldmark is Hugo's default Markdown processor
+    [markup.goldmark]
+        # Renderer configuration
+        [markup.goldmark.renderer]
+            unsafe = true                       # Allow raw HTML in Markdown content
+                                               # Required for custom HTML elements and styling
+    
+    # Table of Contents Configuration
+    # -------------------------------------------------------------------------
+    # Controls how Hugo generates automatic table of contents
+    [markup.tableOfContents]
+        startLevel = 2                          # Start TOC from H2 headings
+        endLevel = 6                            # Include up to H6 headings
+        ordered = false                         # Use unordered list (ul) instead of ordered list (ol)
