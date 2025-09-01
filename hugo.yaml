@@ -1,0 +1,211 @@
+baseURL: 'https://example.com'
+languageCode: 'en'
+title: "Manikandaraj Srinivasan's Tech Blog"
+
+# Enable emoji support
+enableEmoji: true
+
+# Copyright
+copyright: '© {CURRENT_YEAR} Manikandaraj Srinivasan. All rights reserved.'
+
+# Date format
+dateFormatToUse: 'Jan 02, 2006'
+
+# Profile configuration
+profile_image: '/images/profile.jpg'
+profile_alt_text: 'Manikandaraj Srinivasan - Software Engineer'
+
+# SEO
+description: "Welcome to Manikandaraj Srinivasan's tech blog. I share insights about software development, programming, technology, and my journey in the tech industry."
+keywords: ['programming', 'software development', 'technology', 'web development', 'coding', 'tech blog', 'Manikandaraj', 'software engineer']
+
+params:
+  author: 'Manikandaraj Srinivasan'
+  
+  # Author details
+  author_details:
+    name: 'Manikandaraj Srinivasan'
+    email: 'matrix@manikandaraj.com'
+    job_title: 'Software Engineer'
+  
+  # Blog configuration
+  blog:
+    list_title: 'Latest Blog Posts'
+    posts_title: 'Blog Posts'
+    published_text: 'Published on'
+    reading_time_text: 'min read'
+    tags_text: 'Tags'
+    toc_title: 'Table of Contents'
+    auto_toc: true
+    hide_duplicate_title: true
+    show_archive: true
+    related_posts: true
+  
+  # Social Links Configuration
+  social:
+    - name: "GitHub"
+      url: "https://github.com/username"
+      icon: "fab fa-github"
+    - name: "LinkedIn" 
+      url: "https://linkedin.com/in/username"
+      icon: "fab fa-linkedin"
+    - name: "Twitter"
+      url: "https://twitter.com/username"
+      icon: "fab fa-twitter"
+    - name: "StackOverflow"
+      url: "https://stackoverflow.com/users/username"
+      icon: "fab fa-stack-overflow"
+    - name: "Email"
+      url: "mailto:contact@example.com"
+      icon: "fas fa-envelope"
+    - name: "Website"
+      url: "https://example.com"
+      icon: "fas fa-globe"
+  
+  # Topics Configuration
+  topics:
+    - name: "CERTIFICATION PREP"
+      slug: "certification-prep"
+      url: "/categories/certification-prep/"
+      icon: "fas fa-certificate"
+    - name: "AWS"
+      slug: "aws"
+      url: "/categories/aws/"
+      icon: "fab fa-aws"
+    - name: "AI/ML"
+      slug: "ai-ml"
+      url: "/categories/ai-ml/"
+      icon: "fas fa-brain"
+    - name: "Tech"
+      slug: "tech"
+      url: "/categories/tech/"
+      icon: "fas fa-code"
+    - name: "Finance"
+      slug: "finance"
+      url: "/categories/finance/"
+      icon: "fas fa-chart-line"
+    - name: "Personal"
+      slug: "personal"
+      url: "/categories/personal/"
+      icon: "fas fa-user"
+    - name: "Referrals"
+      slug: "referrals"
+      url: "/categories/referrals/"
+      icon: "fas fa-handshake"
+  
+  # Footer configuration
+  footer:
+    links:
+      - name: "Privacy Policy"
+        url: "/privacy/"
+      - name: "Terms of Service"  
+        url: "/terms/"
+      - name: "License"
+        url: "/license/"
+  
+  # Analytics (optional)
+  # googleAnalytics: "G-MEASUREMENT_ID"
+  analytics:
+    # plausible:
+    #   domain: "example.com"
+    # fathom: "SITE_ID"
+  
+  # PWA Configuration (optional)
+  pwa:
+    enable: false
+  
+  # Performance monitoring (optional)
+  performance:
+    monitor: false
+  
+  # Fonts configuration (optional)
+  fonts:
+    google: "Inter:wght@400;500;600;700"
+    primary: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
+  
+  # Contact form configuration
+  contact:
+    api_endpoint: "https://formspree.io/f/YOUR_FORM_ID"  # Replace with your actual API endpoint
+    success_message: "Thank you for your message! I'll get back to you soon."
+    error_message: "Sorry, there was an error sending your message. Please try again."
+  
+  # Robots.txt configuration
+  robots:
+    # disallow_all: false
+    disallow: ["/admin/", "/search/"]
+
+# Menu configuration
+menu:
+  main:
+    - identifier: 'home'
+      name: 'Home'
+      url: '/'
+      weight: 10
+    - identifier: 'about'
+      name: 'About'
+      url: '/about/'
+      weight: 20
+    - identifier: 'blog'
+      name: 'Blog'
+      url: '/posts/'
+      weight: 30
+    - identifier: 'contact'
+      name: 'Contact'
+      url: '/contact/'
+      weight: 40
+
+# Permalink configuration
+permalinks:
+  posts: '/:year/:month/:title/'
+
+# Pagination
+pagination:
+  pagerSize: 6
+  path: 'page'
+
+# Taxonomy configuration
+taxonomies:
+  category: 'categories'
+  tag: 'tags'
+
+# Markup configuration
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: 'github-dark'
+    lineNos: false
+    lineNumbersInTable: false
+    tabWidth: 4
+
+# Build configuration
+build:
+  writeStats: true
+
+# Output formats
+outputs:
+  home: ['HTML', 'RSS']
+  section: ['HTML']
+
+# Related content
+related:
+  includeNewer: true
+  indices:
+    - name: 'keywords'
+      weight: 100
+    - name: 'tags'
+      weight: 80
+    - name: 'date'
+      weight: 10
+  threshold: 20
+  toLower: false
+
+# Security
+security:
+  exec:
+    allow:
+      - '^(dart-)?sass(-embedded)?$'
+      - '^go$'
+      - '^npx$'
+      - '^postcss$'

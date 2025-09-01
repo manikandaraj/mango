@@ -1,0 +1,31 @@
+<aside class="left-sidebar">
+    <!-- Connect Section -->
+    <div class="connect-section">
+        <h3>CONNECT</h3>
+        <div class="social-links">
+            {{ range .Site.Params.social }}
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="social-link" title="{{ .name }}">
+                <i class="{{ .icon }}"></i>
+                <span class="text">{{ .name }}</span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    
+    <!-- Topics Section -->
+    <div class="topics-section">
+        <h3>TOPICS</h3>
+        <div class="topic-links">
+            <a href="/posts/" class="topic-link" title="All Posts">
+                <i class="fas fa-list"></i>
+                <span class="text">All Posts</span>
+            </a>
+            {{ range .Site.Params.topics }}
+            <a href="{{ .url }}" class="topic-link" title="{{ .name }}">
+                <i class="{{ .icon }}"></i>
+                <span class="text">{{ .name }}</span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</aside>

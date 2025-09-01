@@ -1,0 +1,19 @@
+<header class="main-header">
+    <div class="header-content">
+        <div class="site-title">
+            <a href="{{ .Site.BaseURL }}">{{ .Site.Params.author | default "Manikandaraj Srinivasan" }}</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                {{ range .Site.Menus.main }}
+                <li><a href="{{ .URL }}" class="nav-link {{ if $current := $.Page }}{{ if $current.IsMenuCurrent "main" . }}active{{ end }}{{ end }}">{{ .Name }}</a></li>
+                {{ end }}
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,44 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<div class="blog-posts" id="blog-posts">
+    {{ range .Pages }}
+    <article class="blog-post" data-category="{{ range .Params.categories }}{{ . | urlize }} {{ end }}">
+        <header class="post-header">
+            <h2 class="post-title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+            <div class="post-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                {{ if .Params.categories }}
+                <span class="separator">•</span>
+                <div class="post-categories">
+                    {{ range .Params.categories }}
+                    <span class="category">{{ . }}</span>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </header>
+        
+        <div class="post-content">
+            {{ if .Params.summary }}
+                {{ .Params.summary | markdownify }}
+            {{ else }}
+                {{ .Summary }}
+            {{ end }}
+        </div>
+        
+        <footer class="post-footer">
+            <a href="{{ .RelPermalink }}" class="read-more">Read More →</a>
+        </footer>
+    </article>
+    {{ end }}
+    
+    {{ if eq (len .Pages) 0 }}
+    <div class="no-posts">
+        <p>No posts found.</p>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

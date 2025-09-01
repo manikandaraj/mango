@@ -1,0 +1,12 @@
+name = "MANGO"
+license = "MIT"
+licenselink = "https://github.com/yourusername/mango/blob/master/LICENSE"
+description = "A fixed-layout personal blog theme with custom scrolling, rotating quotes, and topic filtering"
+homepage = "https://github.com/yourusername/mango"
+tags = ["blog", "personal", "responsive", "custom-scroll", "quotes", "fixed-layout"]
+features = ["fixed-layout", "custom-scrollbar", "quote-rotation", "topic-filtering", "blue-theme"]
+min_version = "0.100.0"
+
+[author]
+  name = "Manikandaraj Srinivasan"
+  homepage = "https://manikandaraj.com"

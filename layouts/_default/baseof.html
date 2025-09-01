@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Pico CSS -->
+    <link rel="stylesheet" href="{{ "css/pico.blue.min.css" | absURL }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ "css/custom.css" | absURL }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        {{ partial "header.html" . }}
+        
+        <!-- Main Content Area -->
+        <div class="content-wrapper">
+            <!-- Left Sidebar -->
+            {{ partial "sidebar-left.html" . }}
+            
+            <!-- Main Content -->
+            <main class="main-content" id="main-content">
+                <div class="custom-scrollbar" id="custom-scrollbar">
+                    <div class="scroll-thumb" id="scroll-thumb"></div>
+                </div>
+                <div class="content-inner" id="content-inner">
+                    {{ block "main" . }}{{ end }}
+                </div>
+            </main>
+            
+            <!-- Right Sidebar -->
+            {{ partial "sidebar-right.html" . }}
+        </div>
+        
+        <!-- Footer -->
+        {{ partial "footer.html" . }}
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="{{ "js/main.js" | absURL }}"></script>
+</body>
+</html>
