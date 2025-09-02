@@ -1,0 +1,41 @@
+# File: .github/workflows/trigger-main-build.yml
+# Repository: mango (Theme Repository)
+
+name: Trigger MANIKANDARAJ.COM Build (Theme Update)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  trigger-manikandaraj-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout mango theme repository
+      uses: actions/checkout@v4
+    
+    - name: Trigger MANIKANDARJ.COM main repository deployment
+      uses: peter-evans/repository-dispatch@v3
+      with:
+        token: ${{ secrets.MAIN_REPO_TOKEN }}
+        repository: manikandaraj/manikandaraj.com
+        event-type: theme-updated
+        client-payload: |
+          {
+            "theme_commit": "${{ github.sha }}",
+            "theme_ref": "${{ github.ref }}",
+            "theme_repository": "${{ github.repository }}",
+            "triggered_by": "mango-theme-repository",
+            "resource_bind": "MANIKANDARJ.COM",
+            "timestamp": "${{ github.event.head_commit.timestamp }}"
+          }
+    
+    - name: Theme update notification
+      run: |
+        echo "🎨 MANIKANDARJ.COM theme updated!"
+        echo "📝 Theme commit: ${{ github.sha }}"
+        echo "🔗 Repository: ${{ github.repository }}"
+        echo "🚀 Triggered main repository build for MANIKANDARJ.COM"
+        echo "⏰ Update time: $(date)"
