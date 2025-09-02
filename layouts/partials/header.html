@@ -3,16 +3,19 @@
         <div class="site-title">
             <a href="{{ .Site.BaseURL }}">{{ .Site.Params.author | default "Manikandaraj Srinivasan" }}</a>
         </div>
-        <nav class="main-nav">
+        <div class="header-controls">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="main-nav" id="main-nav">
             <ul>
                 {{ range .Site.Menus.main }}
                 <li><a href="{{ .URL }}" class="nav-link {{ if $current := $.Page }}{{ if $current.IsMenuCurrent "main" . }}active{{ end }}{{ end }}">{{ .Name }}</a></li>
                 {{ end }}
-                <li>
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                        <i class="fas fa-moon" id="theme-icon"></i>
-                    </button>
-                </li>
             </ul>
         </nav>
     </div>
