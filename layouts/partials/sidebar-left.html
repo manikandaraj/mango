@@ -3,11 +3,15 @@
     <div class="connect-section">
         <h3>CONNECT</h3>
         <div class="social-links">
+            {{ if .Site.Params.social }}
             {{ range .Site.Params.social }}
+            {{ if and . .url .name }}
             <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="social-link" title="{{ .name }}">
-                <i class="{{ .icon }}"></i>
+                {{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}
                 <span class="text">{{ .name }}</span>
             </a>
+            {{ end }}
+            {{ end }}
             {{ end }}
         </div>
     </div>
@@ -20,11 +24,15 @@
                 <i class="fas fa-list"></i>
                 <span class="text">All Posts</span>
             </a>
+            {{ if .Site.Params.topics }}
             {{ range .Site.Params.topics }}
+            {{ if and . .url .name }}
             <a href="{{ .url }}" class="topic-link" title="{{ .name }}">
-                <i class="{{ .icon }}"></i>
+                {{ if .icon }}<i class="{{ .icon }}"></i>{{ end }}
                 <span class="text">{{ .name }}</span>
             </a>
+            {{ end }}
+            {{ end }}
             {{ end }}
         </div>
     </div>
