@@ -317,10 +317,6 @@ body {
     display: flex !important;
     align-items: center !important;
     gap: 1rem !important;
-    position: absolute !important;
-    right: 2rem !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
 }
 
 .site-title {
@@ -347,13 +343,42 @@ body {
     gap: 2rem !important;
 }
 
-/* Position navigation in the center on desktop */
+/* Desktop header layout - menu items and theme switcher to the right */
 @media (min-width: 769px) {
+    .header-controls {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0 !important;
+    }
+    
     .main-nav {
-        position: absolute !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) !important;
+        position: static !important;
+        transform: none !important;
+        order: 1 !important;
+    }
+    
+    .theme-toggle {
+        order: 2 !important;
+        margin-left: 2rem !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
+/* Mobile header layout - hamburger menu then theme switcher */
+@media (max-width: 768px) {
+    .header-controls {
+        gap: 0.5rem !important;
+    }
+    
+    .mobile-menu-toggle {
+        order: 1 !important;
+    }
+    
+    .theme-toggle {
+        order: 2 !important;
     }
 }
 
@@ -889,7 +914,8 @@ body {
         flex-direction: column !important;
         padding: 1rem !important;
         gap: 0.5rem !important;
-        align-items: stretch !important;
+        align-items: flex-start !important;
+        width: 100% !important;
     }
     
     .nav-link {
@@ -898,11 +924,12 @@ body {
         border-radius: 6px !important;
         transition: all 0.3s ease !important;
         text-align: left !important;
-        width: 100% !important;
+        width: auto !important;
         box-sizing: border-box !important;
         white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        min-width: max-content !important;
     }
     
     .nav-link:hover,
