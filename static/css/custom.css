@@ -291,14 +291,17 @@ body {
     background-color: var(--bg-color) !important;
 }
 
-/* Header - Fixed at top, 4% height */
+/* Header - ALWAYS FIXED at top, 4% height */
 .main-header {
     height: 4vh !important;
     min-height: 40px !important;
     max-height: 60px !important;
     background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)) !important;
     box-shadow: 0 2px 10px rgba(14, 165, 233, 0.3) !important;
-    position: relative !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
     z-index: 1000 !important;
     display: flex !important;
     align-items: center !important;
@@ -343,23 +346,17 @@ body {
     gap: 2rem !important;
 }
 
-/* Desktop header layout - menu items and theme switcher to the right */
+/* Desktop header layout - menu items to the far right */
 @media (min-width: 769px) {
-    .header-controls {
-        display: flex !important;
-        align-items: center !important;
-        gap: 0 !important;
-    }
-    
     .main-nav {
-        position: static !important;
-        transform: none !important;
-        order: 1 !important;
+        position: absolute !important;
+        right: 2rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
     }
     
-    .theme-toggle {
-        order: 2 !important;
-        margin-left: 2rem !important;
+    .header-controls {
+        display: none !important;
     }
     
     .mobile-menu-toggle {
@@ -367,18 +364,10 @@ body {
     }
 }
 
-/* Mobile header layout - hamburger menu then theme switcher */
+/* Mobile header layout - only hamburger menu */
 @media (max-width: 768px) {
     .header-controls {
         gap: 0.5rem !important;
-    }
-    
-    .mobile-menu-toggle {
-        order: 1 !important;
-    }
-    
-    .theme-toggle {
-        order: 2 !important;
     }
 }
 
@@ -426,14 +415,16 @@ body {
     transform: translateY(-1px) !important;
 }
 
-/* Content Wrapper - 92% height between header/footer */
+/* Content Wrapper - Account for fixed header/footer */
 .content-wrapper {
     display: flex !important;
     height: 92vh !important;
     position: relative !important;
+    margin-top: 4vh !important;
+    margin-bottom: 4vh !important;
 }
 
-/* Left Sidebar - 15% width */
+/* Left Sidebar - FIXED, 15% width */
 .left-sidebar {
     width: 15% !important;
     min-width: 200px !important;
@@ -443,6 +434,11 @@ body {
     flex-direction: column !important;
     padding: 1rem !important;
     overflow-y: auto !important;
+    position: fixed !important;
+    top: 4vh !important;
+    left: 0 !important;
+    height: 88vh !important;
+    z-index: 100 !important;
 }
 
 /* Connect Section - 40% of sidebar height */
@@ -554,12 +550,14 @@ body {
     font-size: 0.7rem !important;
 }
 
-/* Main Content - 70% width */
+/* Main Content - 70% width, account for fixed sidebars */
 .main-content {
     width: 70% !important;
     position: relative !important;
     background-color: var(--card-bg) !important;
     overflow: hidden !important;
+    margin-left: 15% !important;
+    margin-right: 15% !important;
 }
 
 /* Custom Scrollbar - Positioned after right sidebar */
@@ -612,7 +610,7 @@ body {
     display: none !important;
 }
 
-/* Right Sidebar - 15% width */
+/* Right Sidebar - FIXED, 15% width */
 .right-sidebar {
     width: 15% !important;
     min-width: 200px !important;
@@ -622,6 +620,11 @@ body {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    position: fixed !important;
+    top: 4vh !important;
+    right: 0 !important;
+    height: 88vh !important;
+    z-index: 100 !important;
 }
 
 .quotes-container {
@@ -658,7 +661,7 @@ body {
     margin: 0 !important;
 }
 
-/* Footer - Fixed at bottom, 4% height */
+/* Footer - ALWAYS FIXED at bottom, 4% height */
 .main-footer {
     height: 4vh !important;
     min-height: 40px !important;
@@ -668,6 +671,11 @@ body {
     display: flex !important;
     align-items: center !important;
     padding: 0 2rem !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
 }
 
 .footer-content {
@@ -866,14 +874,36 @@ body {
     }
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+    /* iPad Pro 13 inch and similar tablets */
+    .left-sidebar,
+    .right-sidebar {
+        width: 18% !important;
+        min-width: 180px !important;
+    }
+    
+    .main-content {
+        width: 64% !important;
+        margin-left: 18% !important;
+        margin-right: 18% !important;
+    }
+    
+    .main-nav ul {
+        gap: 1.5rem !important;
+    }
+}
+
 @media (max-width: 900px) {
     .left-sidebar,
     .right-sidebar {
         width: 20% !important;
+        min-width: 160px !important;
     }
     
     .main-content {
         width: 60% !important;
+        margin-left: 20% !important;
+        margin-right: 20% !important;
     }
     
     .main-nav ul {
@@ -938,23 +968,32 @@ body {
         transform: none !important;
     }
     
-    /* Hide sidebars completely on mobile - show only main content */
+    /* Mobile layout overrides - restore relative positioning */
     .content-wrapper {
         flex-direction: column !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        height: calc(100vh - 8vh) !important;
+        margin-top: 4vh !important;
+        margin-bottom: 4vh !important;
     }
     
     .left-sidebar {
         display: none !important;
+        position: relative !important;
     }
     
     .right-sidebar {
         display: none !important;
+        position: relative !important;
     }
     
     .main-content {
         width: 100% !important;
         height: auto !important;
         flex: 1 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     
     .header-content {
@@ -1007,8 +1046,7 @@ body {
         gap: 0.5rem !important;
     }
     
-    .mobile-menu-toggle,
-    .theme-toggle {
+    .mobile-menu-toggle {
         width: 36px !important;
         height: 32px !important;
         font-size: 1rem !important;
@@ -1020,40 +1058,6 @@ body {
     }
 }
 
-/* Theme Toggle Button */
-.theme-toggle {
-    background: none !important;
-    border: none !important;
-    color: var(--white) !important;
-    font-size: 1rem !important;
-    padding: 0.5rem !important;
-    border-radius: 4px !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 40px !important;
-    height: 36px !important;
-}
-
-.theme-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    transform: translateY(-1px) !important;
-}
-
-.theme-toggle:focus {
-    outline: none !important;
-    background-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-.theme-toggle i {
-    transition: transform 0.3s ease !important;
-}
-
-.theme-toggle:hover i {
-    transform: rotate(15deg) !important;
-}
 
 /* Dark Theme Icon Colors */
 [data-theme="dark"] .social-link i {

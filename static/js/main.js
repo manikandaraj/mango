@@ -47,8 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCustomScrollbar();
     initializeQuoteRotation();
     setupMouseWheelHandling();
-    initializeThemeToggle();
     initializeMobileMenu();
+    
+    // Set dark theme permanently
+    document.documentElement.setAttribute('data-theme', 'dark');
 });
 
 // Custom Scrollbar Implementation
@@ -274,85 +276,6 @@ if (typeof updateScrollThumb === 'function') {
     updateScrollThumb = throttle(updateScrollThumb, 16); // ~60fps
 }
 
-// Dark Theme Toggle Functionality
-function initializeThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const htmlElement = document.documentElement;
-    
-    if (!themeToggle || !themeIcon) return;
-    
-    // Check for saved theme preference or default to dark mode
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    
-    // Apply saved theme
-    if (savedTheme === 'dark') {
-        htmlElement.setAttribute('data-theme', 'dark');
-        themeIcon.className = 'fas fa-sun';
-    } else {
-        htmlElement.setAttribute('data-theme', 'light');
-        themeIcon.className = 'fas fa-moon';
-    }
-    
-    // Theme toggle click handler
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        // Add transition class for smooth switching
-        document.body.classList.add('theme-transition');
-        
-        // Update theme
-        htmlElement.setAttribute('data-theme', newTheme);
-        
-        // Update icon
-        if (newTheme === 'dark') {
-            themeIcon.className = 'fas fa-sun';
-        } else {
-            themeIcon.className = 'fas fa-moon';
-        }
-        
-        // Save preference
-        localStorage.setItem('theme', newTheme);
-        
-        // Remove transition class after animation
-        setTimeout(function() {
-            document.body.classList.remove('theme-transition');
-        }, 300);
-        
-        // Update scroll thumb after theme change
-        setTimeout(function() {
-            updateScrollThumb();
-        }, 50);
-    });
-    
-    // System theme preference detection
-    if (window.matchMedia && !localStorage.getItem('theme')) {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        // Set initial theme based on system preference
-        if (mediaQuery.matches) {
-            htmlElement.setAttribute('data-theme', 'dark');
-            themeIcon.className = 'fas fa-sun';
-            localStorage.setItem('theme', 'dark');
-        }
-        
-        // Listen for system theme changes
-        mediaQuery.addEventListener('change', function(e) {
-            if (!localStorage.getItem('theme-manually-set')) {
-                const newTheme = e.matches ? 'dark' : 'light';
-                htmlElement.setAttribute('data-theme', newTheme);
-                themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-                localStorage.setItem('theme', newTheme);
-            }
-        });
-    }
-    
-    // Mark when user manually changes theme
-    themeToggle.addEventListener('click', function() {
-        localStorage.setItem('theme-manually-set', 'true');
-    });
-}
 
 // Mobile Menu Functionality
 function initializeMobileMenu() {
