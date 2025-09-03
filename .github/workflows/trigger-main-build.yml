@@ -16,7 +16,7 @@ jobs:
     - name: Checkout mango theme repository
       uses: actions/checkout@v4
     
-    - name: Trigger MANIKANDARJ.COM main repository deployment
+    - name: Trigger MANIKANDARAJ.COM main repository deployment
       uses: peter-evans/repository-dispatch@v3
       with:
         token: ${{ secrets.MAIN_REPO_TOKEN }}
@@ -28,14 +28,14 @@ jobs:
             "theme_ref": "${{ github.ref }}",
             "theme_repository": "${{ github.repository }}",
             "triggered_by": "mango-theme-repository",
-            "resource_bind": "MANIKANDARJ.COM",
+            "resource_bind": "MANIKANDARAJ.COM",
             "timestamp": "${{ github.event.head_commit.timestamp }}"
           }
     
     - name: Theme update notification
       run: |
-        echo "🎨 MANIKANDARJ.COM theme updated!"
+        echo "🎨 MANIKANDARAJ.COM theme updated!"
         echo "📝 Theme commit: ${{ github.sha }}"
         echo "🔗 Repository: ${{ github.repository }}"
-        echo "🚀 Triggered main repository build for MANIKANDARJ.COM"
+        echo "🚀 Triggered main repository build for MANIKANDARAJ.COM"
         echo "⏰ Update time: $(date)"
