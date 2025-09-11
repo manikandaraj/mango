@@ -1,15 +1,36 @@
-baseURL: 'https://example.com'
-languageCode: 'en'
-title: "Manikandaraj Srinivasan's Tech Blog"
+# Configuration file for Hugo Site
+# Author : Manikandaraj Srinivasan
+# Reference : https://gohugo.io/configuration/all/
 
-# Enable emoji support
-enableEmoji: true
+
+baseURL: 'https://manikandaraj.com'
+title: "Manikandaraj Srinivasan"
+languageCode: 'en-us'
+defaultContentLanguage: 'en'
+titleCaseStyle:  'ap'
+
+theme: mango 
+
+#Whether to disable injection of a <meta name="generator"> tag into the home page. Default is false
+disableHugoGeneratorInject:  true
+
+#Whether to allow emoji in Markdown
+enableEmoji:  true
+
+#Whether to enable generation of a robots.txt file
+enableRobotsTXT:  true
+
+#Ensure clean URLs
+uglyURLs: false  
 
 # Copyright
 copyright: '© {CURRENT_YEAR} Manikandaraj Srinivasan. All rights reserved.'
 
 # Date format
 dateFormatToUse: 'Jan 02, 2006'
+
+#Whether to print template execution improvement hints to the console
+templateMetrics:  true
 
 # Profile configuration
 profile_image: '/images/profile.jpg'
@@ -44,53 +65,49 @@ params:
   # Social Links Configuration
   social:
     - name: "GitHub"
-      url: "https://github.com/username"
+      url: "https://github.com/manikandaraj"
       icon: "fab fa-github"
     - name: "LinkedIn" 
-      url: "https://linkedin.com/in/username"
+      url: "https://linkedin.com/in/manikandaraj"
       icon: "fab fa-linkedin"
     - name: "Twitter"
-      url: "https://twitter.com/username"
+      url: "https://x.com/manikandaraj"
       icon: "fab fa-twitter"
     - name: "StackOverflow"
-      url: "https://stackoverflow.com/users/username"
+      url: "https://stackoverflow.com/users/1430572/manikandaraj-srinivasan"
       icon: "fab fa-stack-overflow"
-    - name: "Email"
-      url: "mailto:contact@example.com"
-      icon: "fas fa-envelope"
-    - name: "Website"
-      url: "https://example.com"
-      icon: "fas fa-globe"
+#    - name: "Email"
+#      url: "mailto:matrix@manikandaraj.com"
+#      icon: "fas fa-envelope"
+#    - name: "Website"
+#      url: "https://manikandaraj.com"
+#      icon: "fas fa-globe"
   
   # Topics Configuration
   topics:
     - name: "CERTIFICATION PREP"
       slug: "certification-prep"
-      url: "/categories/certification-prep/"
+      url: "/blog/certification-prep/"
       icon: "fas fa-certificate"
     - name: "AWS"
       slug: "aws"
-      url: "/categories/aws/"
+      url: "/blog/aws/"
       icon: "fab fa-aws"
     - name: "AI/ML"
       slug: "ai-ml"
-      url: "/categories/ai-ml/"
+      url: "/blog/ai-ml/"
       icon: "fas fa-brain"
-    - name: "Tech"
-      slug: "tech"
-      url: "/categories/tech/"
-      icon: "fas fa-code"
-    - name: "Finance"
-      slug: "finance"
-      url: "/categories/finance/"
+    - name: "FinTech"
+      slug: "fintech"
+      url: "/blog/fintech/"
       icon: "fas fa-chart-line"
-    - name: "Personal"
-      slug: "personal"
-      url: "/categories/personal/"
-      icon: "fas fa-user"
+#    - name: "Personal"
+#      slug: "personal"
+#      url: "/blog/personal/"
+#      icon: "fas fa-user"
     - name: "Referrals"
       slug: "referrals"
-      url: "/categories/referrals/"
+      url: "/blog/referrals/"
       icon: "fas fa-handshake"
   
   # Footer configuration
@@ -120,12 +137,12 @@ params:
   
   # Fonts configuration (optional)
   fonts:
-    google: "Inter:wght@400;500;600;700"
+    google: "Inter:wght@300;400;500;600"
     primary: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
   
   # Contact form configuration
   contact:
-    api_endpoint: "https://formspree.io/f/YOUR_FORM_ID"  # Replace with your actual API endpoint
+    api_endpoint: "https://api.manikandaraj.com/f/YOUR_FORM_ID"  # Replace with your actual API endpoint
     success_message: "Thank you for your message! I'll get back to you soon."
     error_message: "Sorry, there was an error sending your message. Please try again."
   
@@ -147,7 +164,7 @@ menu:
       weight: 20
     - identifier: 'blog'
       name: 'Blog'
-      url: '/posts/'
+      url: '/blog/'
       weight: 30
     - identifier: 'contact'
       name: 'Contact'
@@ -156,7 +173,7 @@ menu:
 
 # Permalink configuration
 permalinks:
-  posts: '/:year/:month/:title/'
+  blog: '/:year/:month/:title/'
 
 # Pagination
 pagination:

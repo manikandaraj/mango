@@ -289,6 +289,15 @@ body {
     max-width: 1920px !important;
     margin: 0 auto !important;
     background-color: var(--bg-color) !important;
+    width: 100% !important;
+}
+
+/* Desktop - Force max-width constraint */
+@media (min-width: 1921px) {
+    .app-container {
+        max-width: 1920px !important;
+        width: 1920px !important;
+    }
 }
 
 /* Header - ALWAYS FIXED at top, 4% height */
@@ -908,7 +917,12 @@ button[id="theme-toggle"],
 
 /* Tablet-specific styles for better footer visibility */
 @media (max-width: 1366px) and (min-width: 769px) {
-    /* iPad Pro 13 inch, iPad Pro 12.9, iPad Air, and similar tablets */
+    /* iPad Pro 13 inch, iPad Pro 12.9, iPad Air, and similar tablets - Scale to 100% */
+    .app-container {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
     .left-sidebar,
     .right-sidebar {
         width: 18% !important;
@@ -970,6 +984,12 @@ button[id="theme-toggle"],
 }
 
 @media (max-width: 768px) {
+    /* Mobile - Scale to 100% of screen width */
+    .app-container {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
     /* Show mobile menu toggle */
     .mobile-menu-toggle {
         display: flex !important;
